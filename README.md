@@ -82,8 +82,7 @@ medical-tourism-analysis/ ├── 📊 Data/ │ ├── patienten.csv (12K+
 ## 🛠️ Technologies Used
 
 - **Database:** MySQL, SQL Server
-- **Analysis:** Python (Pandas, NumPy, Matplotlib, Seaborn)
-- **Visualization:** Interactive HTML dashboards, Statistical plots
+- **Analysis:** Python (Pandas, NumPy)
 - **Business Intelligence:** KPI tracking, Cohort analysis, Predictive modeling
 
 ---
