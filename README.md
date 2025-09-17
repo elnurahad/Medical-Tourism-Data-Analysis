@@ -1,5 +1,3 @@
-![Medical Tourism Data Analysis](Medical_Tourism.png)
-
 # 🏥 Medical Tourism Data Analysis with Python Pandas & SQL
 
 ---
