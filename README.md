@@ -40,7 +40,6 @@ The project analyzes 28,050+ records across multiple interconnected datasets:
 
 **Python Data Science Stack:**
 - Pandas: Data manipulation, cleaning, and transformation
-- Data Visualization: Interactive dashboards and statistical plots
 - Statistical Analysis: Correlation analysis, trend identification
 - Business Intelligence: KPI tracking, performance metrics
 
