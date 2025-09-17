@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Medical Database Mind Map</title>
+    <style>
+        ul { list-style-type: none; }
+        li { margin: 5px 0; cursor: pointer; }
+        .nested { display: none; }
+        .active { display: block; }
+    </style>
+</head>
+<body>
+<h2>Datenbank Medizindaten - Mind Map</h2>
+<ul id='mindMap'>
+</ul>
+<script>
+    const data = {"name": "Medical Database", "children": [{"name": "Patients / Patienten", "children": [{"name": "Patienten_ID (PK)"}, {"name": "Vorname"}, {"name": "Nachname"}, {"name": "Herkunftsland"}, {"name": "Alter bei Anmeldung"}, {"name": "Geschlecht (M/W)"}, {"name": "Anmeldedatum"}, {"name": "Sprache"}, {"name": "Vorherige Behandlung Deutschland (Ja/Nein)"}, {"name": "Versicherungstyp (Privat/Gesetzlich/Ausland/Selbstzahler)"}, {"name": "Familienanamnese"}, {"name": "Familienstand (Ledig/Verheiratet/Geschieden/Verwitwet)"}, {"name": "Bildungsgrad (Grundschule/Hauptschule/Realschule/Abitur/Studium)"}, {"name": "Berufsstatus (Angestellt/Selbststaendig/Rentner/Arbeitslos/Student)"}]}, {"name": "Medical Services / Medizinische Leistungen", "children": [{"name": "Leistungs_ID (PK)"}, {"name": "Leistungsname"}, {"name": "Kategorie"}, {"name": "Kosten EUR"}, {"name": "Dauer Stunden"}, {"name": "Behandlungsart (Ambulant/Stationaer/Tagesklinik)"}, {"name": "Nachsorge erforderlich (Ja/Nein)"}, {"name": "Qualitaetsstufe (Standard/Premium)"}, {"name": "Komplexitaet (Niedrig/Mittel/Hoch)"}, {"name": "Narkose erforderlich (Ja/Nein)"}, {"name": "Nachsorge Tage"}]}, {"name": "Staff / Begleitpersonal", "children": [{"name": "Mitarbeiter_ID (PK)"}, {"name": "Vorname"}, {"name": "Nachname"}, {"name": "Geschlecht (M/W)"}, {"name": "Sprachkombination"}, {"name": "Verfuegbarkeit (Vollzeit/Teilzeit)"}, {"name": "Stundenlohn EUR"}, {"name": "Status (Aktiv/Inaktiv)"}, {"name": "Einstellungsjahr"}, {"name": "Berufserfahrung Jahre"}, {"name": "Qualifikation"}, {"name": "Fuehrerscheinklasse"}, {"name": "Medizinische Grundkenntnisse (Ja/Nein)"}, {"name": "Patienten pro Jahr"}, {"name": "Durchschnittsbewertung"}]}, {"name": "Treatment Processes / Behandlungsverlaeufe", "children": [{"name": "Behandlungs_ID (PK)"}, {"name": "Patienten_ID (FK)"}, {"name": "Leistungs_ID (FK)"}, {"name": "Mitarbeiter_ID (FK)"}, {"name": "Anfragedatum"}, {"name": "Beratungsdatum"}, {"name": "Behandlungsdatum"}, {"name": "Abschlussdatum"}, {"name": "Status"}, {"name": "Behandlungsort"}, {"name": "Transportart"}, {"name": "Begleitungstage"}, {"name": "Dolmetscherstunden"}, {"name": "Leistungskosten EUR"}, {"name": "Dolmetscherkosten EUR"}, {"name": "Transportkosten EUR"}, {"name": "Unterkunftskosten EUR"}, {"name": "Zusatzkosten EUR"}, {"name": "Gesamtkosten EUR"}, {"name": "Komplikationen (Ja/Nein)"}, {"name": "Patientenzufriedenheit"}, {"name": "Nachsorge erforderlich (Ja/Nein/Teilweise)"}]}, {"name": "Accommodations / Unterk\u00fcnfte", "children": [{"name": "Unterkunft_ID (PK)"}, {"name": "Name"}, {"name": "Stadt"}, {"name": "Typ (Hotel/Pension/Apartment/Klinik)"}, {"name": "Sterne (1-5)"}, {"name": "Preis pro Nacht EUR"}, {"name": "Medizinische Betreuung (Ja/Nein)"}, {"name": "Russischsprachiges Personal (Ja/Nein)"}, {"name": "Transfer Service (Ja/Nein)"}, {"name": "Kuechenzeile verfuegbar (Ja/Nein)"}, {"name": "Anzahl Zimmer"}]}, {"name": "Medical Reports / Medizinische Berichte", "children": [{"name": "Bericht_ID (PK)"}, {"name": "Behandlungs_ID (FK)"}, {"name": "Berichtstyp"}, {"name": "Erstellungsdatum"}, {"name": "Sprache"}, {"name": "Format"}, {"name": "An Patient gesendet (Ja/Nein)"}, {"name": "Befund Status"}]}]};
+
+    function createNode(node) {
+        const li = document.createElement('li');
+        li.textContent = node.name;
+        if (node.children) {
+            const span = document.createElement('span');
+            span.textContent = ' [+]';
+            span.style.color = 'blue';
+            span.style.marginLeft = '8px';
+            span.style.cursor = 'pointer';
+            span.onclick = function() {
+                this.parentElement.querySelector('.nested').classList.toggle('active');
+                this.textContent = this.textContent === ' [+]' ? ' [-]' : ' [+]';
+            };
+            li.appendChild(span);
+            const ul = document.createElement('ul');
+            ul.classList.add('nested');
+            node.children.forEach(child => ul.appendChild(createNode(child)));
+            li.appendChild(ul);
+        }
+        return li;
+    }
+
+    const mindMapRoot = document.getElementById('mindMap');
+    mindMapRoot.appendChild(createNode(data));
+</script>
+</body>
+</html>
